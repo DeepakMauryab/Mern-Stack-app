@@ -43,7 +43,13 @@ userSchema.pre("save", async function(next){
 });
 
 // genrtating a token for user authentication
-
+userSchema.methods.generateAuthToken=async function(){
+    const tokenAuth= await jwt.sign({_id:this._id}, process.env.SECRET_KEY);
+    this.tokens= this.tokens.concat({token:tokenAuth});
+    this.save();
+    return tokenAuth;
+    
+} 
 
 const userCollection= new mongoose.model("userData", userSchema);
 module.exports= userCollection;

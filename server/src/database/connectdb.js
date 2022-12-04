@@ -1,13 +1,13 @@
-const mongoose= require("mongoose");
+const mongoose = require("mongoose");
 
-const mongoCon= "mongodb+srv://Deepak55:DEEPAK@cluster0.ppvi992.mongodb.net/MernProject?retryWrites=true&w=majority";
+const mongoCon = process.env.DATABASE;
 
 const mongooseOptions = {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 };
-mongoose.connect(mongoCon, mongooseOptions).then(()=>{
+mongoose.connect(mongoCon, mongooseOptions).then(() => {
     console.log("database connected");
-}).catch((e)=>{
+}).catch((e) => {
     console.log(e);
 });
